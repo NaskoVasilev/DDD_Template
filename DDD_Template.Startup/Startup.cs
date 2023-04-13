@@ -1,4 +1,5 @@
 using DDD_Template.Application;
+using DDD_Template.Domain;
 using DDD_Template.Infrastructure;
 using DDD_Template.Web;
 using Microsoft.AspNetCore.Builder;
@@ -17,6 +18,7 @@ namespace DDD_Template.Startup
 
         public void ConfigureServices(IServiceCollection services) =>
             services
+            .AddDomain()
             .AddApplication(this.Configuration)
             .AddInfrastructure(this.Configuration)
             .AddWebComponents();

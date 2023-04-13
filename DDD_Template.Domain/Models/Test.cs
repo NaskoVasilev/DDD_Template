@@ -4,7 +4,7 @@ namespace DDD_Template.Domain.Models
 {
     public class Test : IAggregateRoot
     {
-        public Test(string name)
+        internal Test(string name)
         {
             this.Name = name;
         }

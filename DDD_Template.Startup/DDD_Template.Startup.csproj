@@ -16,6 +16,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\DDD_Template.Application\DDD_Template.Application.csproj" />
+		<ProjectReference Include="..\DDD_Template.Domain\DDD_Template.Domain.csproj" />
 		<ProjectReference Include="..\DDD_Template.Infrastructure\DDD_Template.Infrastructure.csproj" />
 		<ProjectReference Include="..\DDD_Template.Web\DDD_Template.Web.csproj" />
 	</ItemGroup>
