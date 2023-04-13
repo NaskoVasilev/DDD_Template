@@ -1,5 +1,6 @@
 using DDD_Template.Application;
 using DDD_Template.Infrastructure;
+using DDD_Template.Web;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -18,7 +19,7 @@ namespace DDD_Template.Startup
             services
             .AddApplication(this.Configuration)
             .AddInfrastructure(this.Configuration)
-            .AddControllers();
+            .AddWebComponents();
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
