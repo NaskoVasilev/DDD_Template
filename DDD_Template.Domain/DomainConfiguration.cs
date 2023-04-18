@@ -1,4 +1,6 @@
-﻿using DDD_Template.Domain.Factories;
+﻿using DDD_Template.Domain.Common;
+using DDD_Template.Domain.Factories;
+using DDD_Template.Domain.Models;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DDD_Template.Domain
@@ -12,6 +14,7 @@ namespace DDD_Template.Domain
                     .AddClasses(classes => classes
                         .AssignableTo(typeof(IFactory<>)))
                     .AsMatchingInterface()
-                    .WithTransientLifetime());
+                    .WithTransientLifetime())
+                .AddTransient<IInitialData, TestData>();
     }
 }
