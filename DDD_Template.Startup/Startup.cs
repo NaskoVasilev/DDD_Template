@@ -2,6 +2,7 @@ using DDD_Template.Application;
 using DDD_Template.Domain;
 using DDD_Template.Infrastructure;
 using DDD_Template.Web;
+using DDD_Template.Web.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -31,6 +32,7 @@ namespace DDD_Template.Startup
             }
 
             app
+                .UseValidationExceptionHandler()
                 .UseHttpsRedirection()
                 .UseRouting()
                 .UseAuthentication()
