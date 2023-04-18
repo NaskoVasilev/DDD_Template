@@ -1,4 +1,5 @@
-﻿using DDD_Template.Application.Behaviours;
+﻿using AutoMapper;
+using DDD_Template.Application.Behaviours;
 using DDD_Template.Application.Common;
 using MediatR;
 using Microsoft.Extensions.Configuration;
@@ -16,6 +17,7 @@ namespace DDD_Template.Application
                 .Configure<ApplicationSettings>(
                     configuration.GetSection(nameof(ApplicationSettings)),
                     options => options.BindNonPublicProperties = true)
+                .AddAutoMapper(Assembly.GetExecutingAssembly())
                 .AddMediatR(Assembly.GetExecutingAssembly())
                 .AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
     }

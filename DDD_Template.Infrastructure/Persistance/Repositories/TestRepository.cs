@@ -1,4 +1,6 @@
-﻿using DDD_Template.Application.Features.Tests;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using DDD_Template.Application.Features.Tests;
 using DDD_Template.Application.Features.Tests.Queries.Search;
 using DDD_Template.Domain.Models;
 using Microsoft.EntityFrameworkCore;
@@ -12,10 +14,12 @@ namespace DDD_Template.Infrastructure.Persistance.Repositories
     internal class TestRepository : DataRepository<Test>, ITestRepository
     {
         private readonly ApplicationDbContext db;
+        private readonly IMapper mapper;
 
-        public TestRepository(ApplicationDbContext db) : base(db)
+        public TestRepository(ApplicationDbContext db, IMapper mapper) : base(db)
         {
             this.db = db;
+            this.mapper = mapper;
         }
 
         public async Task<int> Count(CancellationToken cancellationToken) =>
@@ -30,8 +34,8 @@ namespace DDD_Template.Infrastructure.Persistance.Repositories
                     .Where(x => EF.Functions.Like(x.Name, $"%{name}%"));
             }
 
-            return await query
-                .Select(x => new TestListingModel(x.Name))
+            return await this.mapper
+                .ProjectTo<TestListingModel>(query)
                 .ToListAsync();
         }
     }
