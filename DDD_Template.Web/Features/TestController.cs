@@ -1,20 +1,15 @@
-﻿using DDD_Template.Application.Contracts;
-using DDD_Template.Domain.Models;
+﻿using DDD_Template.Application.Features.Tests.Queries.Search;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 
 namespace DDD_Template.Web.Features
 {
     [ApiController]
     [Route("[controller]")]
-    public class TestController : ControllerBase
+    public class TestController : ApiController
     {
-        private readonly IRepository<Test> tests;
-
-        public TestController(IRepository<Test> tests) => this.tests = tests;
-
         [HttpGet]
-        public IEnumerable<Test> Get() => this.tests.All().ToList();
+        public async Task<ActionResult<SearchTestsOutputModel>> Get([FromQuery] SearchTestsQuery query) =>
+            await this.Mediator.Send(query);
     }
 }

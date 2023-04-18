@@ -1,5 +1,8 @@
 ﻿using DDD_Template.Application.Contracts;
 using DDD_Template.Application.Features.Identity;
+using DDD_Template.Application.Features.Identity.Commands.CreateUser;
+using DDD_Template.Application.Features.Identity.Commands.LoginUser;
+using DDD_Template.Web.Common;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -8,7 +11,7 @@ namespace DDD_Template.Web.Features
 {
     [ApiController]
     [Route("[controller]")]
-    public class IdentityController : ControllerBase
+    public class IdentityController : ApiController
     {
         private readonly IIdentity identity;
 
@@ -29,24 +32,13 @@ namespace DDD_Template.Web.Features
         }
 
         [HttpPost]
+        [Route(nameof(Register))]
+        public async Task<ActionResult> Register(CreateUserCommand command)
+            => await this.Send(command);
+
+        [HttpPost]
         [Route(nameof(Login))]
-        public async Task<ActionResult<LoginOutputModel>> Login(UserInputModel model)
-        {
-            var result = await this.identity.Login(model);
-
-            if (!result.Succeeded)
-            {
-                return BadRequest(result.Errors);
-            }
-
-            return result.Data;
-        }
-
-        [HttpGet]
-        [Authorize]
-        public IActionResult Get()
-        {
-            return this.Ok(this.User.Identity.Name);
-        }
+        public async Task<ActionResult<LoginOutputModel>> Login(LoginUserCommand command) =>
+            await this.Send(command);
     }
 }

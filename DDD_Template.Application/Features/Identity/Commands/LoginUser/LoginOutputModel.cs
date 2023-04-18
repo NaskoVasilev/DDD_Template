@@ -1,4 +1,4 @@
-﻿namespace DDD_Template.Application.Features.Identity
+﻿namespace DDD_Template.Application.Features.Identity.Commands.LoginUser
 {
     public class LoginOutputModel
     {

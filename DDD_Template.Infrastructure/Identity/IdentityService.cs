@@ -1,6 +1,7 @@
 ﻿using DDD_Template.Application.Common;
 using DDD_Template.Application.Contracts;
 using DDD_Template.Application.Features.Identity;
+using DDD_Template.Application.Features.Identity.Commands.LoginUser;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;

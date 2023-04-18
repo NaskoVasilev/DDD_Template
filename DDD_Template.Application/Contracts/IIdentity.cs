@@ -1,5 +1,6 @@
 ﻿using DDD_Template.Application.Common;
 using DDD_Template.Application.Features.Identity;
+using DDD_Template.Application.Features.Identity.Commands.LoginUser;
 using System.Threading.Tasks;
 
 namespace DDD_Template.Application.Contracts
